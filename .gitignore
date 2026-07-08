@@ -1,0 +1,31 @@
+# Dependencies
+node_modules/
+.pnp
+.pnp.js
+
+# Next.js
+.next/
+out/
+build/
+
+# Environment files — NEVER commit these
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Application data — JSON file-backed database.
+# Contains real customer bookings, phone numbers, bank account details, and the
+# Gmail App Password (stored in plaintext by design — see src/lib/serverSettings.ts).
+# NEVER commit this to version control.
+.data/

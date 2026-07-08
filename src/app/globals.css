@@ -1,0 +1,82 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --jade: #6BD5AC;
+  --jade-light: #8FE2C2;
+  --jade-dark: #4FB890;
+  --bg-base: #0E2A21;     /* darkened #6BD5AC */
+  --bg-surface: #15392C;  /* darkened #6BD5AC */
+  --bg-card: #1C4938;     /* darkened #6BD5AC */
+}
+
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--bg-base);
+  color: #fff;
+  /* Inter first — full Vietnamese Unicode coverage (ắ ặ ề ệ ổ ộ ừ ự etc.)
+     Segoe UI and some system-ui fonts on Windows silently drop Vietnamese
+     tone marks, which is why text appeared without diacritics. */
+  font-family: "Inter", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Custom thin scrollbar */
+.scrollbar-thin::-webkit-scrollbar {
+  width: 4px;
+}
+.scrollbar-thin::-webkit-scrollbar-track {
+  background: transparent;
+}
+.scrollbar-thin::-webkit-scrollbar-thumb {
+  background: rgba(107, 213, 172, 0.2);
+  border-radius: 999px;
+}
+.scrollbar-thin::-webkit-scrollbar-thumb:hover {
+  background: rgba(107, 213, 172, 0.4);
+}
+
+/* Hide scrollbar for mobile strip */
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
+}
+.scrollbar-none {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Jade glow pulse for active CTA */
+@keyframes jade-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(107, 213, 172, 0.4); }
+  50% { box-shadow: 0 0 0 8px rgba(107, 213, 172, 0); }
+}
+.btn-jade-pulse {
+  animation: jade-pulse 2s ease-in-out infinite;
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ── Viewport lock — homepage only ─────────────────────────────────────────
+   Applied via <html class="viewport-locked"> on the homepage so that no
+   other page is affected. Prevents all scrolling while keeping the layout
+   responsive via clamp() and vh/vw units inside the page itself. */
+html.viewport-locked,
+html.viewport-locked body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
